@@ -1,0 +1,24 @@
+.app {
+    background-color: #ffffff;
+}
+
+.uList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.eachList {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border: 1px solid #dcdcdc;
+    outline: 0px;
+}
+
+.eachList:hover,
+.eachList:active,
+.eachList:focus {
+    background-color: #908e8e;
+}
