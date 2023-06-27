@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./app.css";
 
-let u = null;
+let counter = null;
 
 function App() {
   const [data, setData] = useState([]);
-  const itemPerPage = 10;
+  const itemPerPage = 4;
   const [currentPage, setCurrentPage] = useState(1);
   const [endingPage, setEndingPage] = useState(0);
   useEffect(() => {
@@ -59,7 +59,7 @@ function App() {
                       setCurrentPage(endingPage - index);
                     }}
                   >
-                    <p style={{ display: "none" }}>{(u = index)}</p>
+                    <p style={{ display: "none" }}>{(counter = index)}</p>
                     {endingPage - index}
                   </button>
                 ) : (
@@ -75,12 +75,12 @@ function App() {
                           setCurrentPage(endingPage - index);
                         }}
                       >
-                        <p style={{ display: "none" }}>{(u = index)}</p>
+                        <p style={{ display: "none" }}>{(counter = index)}</p>
                         {endingPage - index}
                       </button>
                     ) : (
                       <>
-                        {u + 1 === index && (
+                        {counter + 1 === index && (
                           <button
                             className="eachList"
                             style={{

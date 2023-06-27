@@ -13,8 +13,8 @@
     padding: 10px;
     cursor: pointer;
     border: none;
-    border: 1px solid #dcdcdc;
     outline: 0px;
+    border: 1px solid #dcdcdc;
 }
 
 .eachList:hover,
