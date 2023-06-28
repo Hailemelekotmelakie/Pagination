@@ -5,15 +5,17 @@ let counter = null;
 
 function App() {
   const [data, setData] = useState([]);
-  const itemPerPage = 4;
+  let itemPerPage = 4;
+  let NameNext = "Next";
+  let namePrevious = "Previous";
+  let numberOfPagesFromLeftAndRight = 3;
   const [currentPage, setCurrentPage] = useState(1);
-  const [endingPage, setEndingPage] = useState(0);
+  const endingPage = Math.ceil(data.length / itemPerPage);
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/comments")
       .then((response) => response.json())
       .then((json) => {
         setData(json);
-        setEndingPage(Math.ceil(json.length / itemPerPage));
       });
   }, []);
 
@@ -33,50 +35,51 @@ function App() {
               </div>
             );
           })}
-
+      {currentPage}
       <div>
         <div className="uList">
           <button
-            disabled={currentPage >= endingPage}
+            disabled={currentPage <= 1}
             className={"eachList"}
             onClick={() => {
-              setCurrentPage(currentPage + 1);
+              setCurrentPage(currentPage - 1);
             }}
           >
-            Next
+            {namePrevious}
           </button>
           {[...Array(endingPage)].map((_val, index) => {
+            index = index + 1;
             const render = (
               <div key={index}>
-                {Math.abs(endingPage - index - currentPage) <= 3 ? (
+                {Math.abs(index - currentPage) <=
+                numberOfPagesFromLeftAndRight ? (
                   <button
                     className={"eachList"}
                     style={{
-                      backgroundColor:
-                        currentPage === endingPage - index ? "#908e8e" : "",
+                      backgroundColor: currentPage === index ? "#908e8e" : "",
                     }}
                     onClick={() => {
-                      setCurrentPage(endingPage - index);
+                      setCurrentPage(index);
                     }}
                   >
                     <p style={{ display: "none" }}>{(counter = index)}</p>
-                    {endingPage - index}
+                    {index}
                   </button>
                 ) : (
                   <div>
-                    {index === 0 || index === endingPage - 1 ? (
+                    {index === 1 || index === endingPage || index === 100 ? (
                       <button
                         className="eachList"
                         style={{
                           backgroundColor:
-                            currentPage === endingPage - index ? "#908e8e" : "",
+                            currentPage === index ? "#908e8e" : "",
                         }}
                         onClick={() => {
-                          setCurrentPage(endingPage - index);
+                          setCurrentPage(index);
                         }}
                       >
                         <p style={{ display: "none" }}>{(counter = index)}</p>
-                        {endingPage - index}
+                        {index}
                       </button>
                     ) : (
                       <>
@@ -85,12 +88,14 @@ function App() {
                             className="eachList"
                             style={{
                               backgroundColor:
-                                currentPage === endingPage - index
-                                  ? "#908e8e"
-                                  : "",
+                                currentPage === index ? "#908e8e" : "",
                             }}
                             onClick={() => {
-                              setCurrentPage(endingPage - index);
+                              index > currentPage
+                                ? setCurrentPage(
+                                    Math.ceil((index + endingPage) / 2)
+                                  )
+                                : setCurrentPage(Math.ceil(currentPage / 2));
                             }}
                           >
                             •••
@@ -105,13 +110,13 @@ function App() {
             return render;
           })}
           <button
-            disabled={currentPage <= 1}
+            disabled={currentPage >= endingPage}
             onClick={() => {
-              setCurrentPage(currentPage - 1);
+              setCurrentPage(currentPage + 1);
             }}
             className="eachList"
           >
-            Previous
+            {NameNext}
           </button>
         </div>
       </div>
