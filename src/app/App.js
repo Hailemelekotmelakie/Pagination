@@ -7,7 +7,7 @@ let counter = null;
 function App() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(
-    parseInt(new URLSearchParams(useLocation().search).get("page"))
+    parseInt(new URLSearchParams(useLocation().search).get("page")) || 4
   );
 
   let itemPerPage =
