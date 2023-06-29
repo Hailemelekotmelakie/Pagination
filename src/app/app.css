@@ -8,8 +8,6 @@
     justify-content: center;
     flex-direction: row;
     max-width: min-content;
-    border: 1px solid #dcdcdc;
-    margin: 10px;
 }
 
 .eachList {
@@ -17,12 +15,15 @@
     cursor: pointer;
     border: none;
     outline: 0px;
+    margin: 1.5px;
     border: 1px solid #dcdcdc;
-    transition: all ease-in 0.5s;
+    transition: all ease-in 0.3s;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.eachList:hover,
-.eachList:active,
-.eachList:focus {
+.eachList:hover {
     background-color: #dbdada;
 }
