@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+Sample:   https://paginate.onrender.com/?offset=4&page=121
+
 ## Available Scripts
 
 In the project directory, you can run:
